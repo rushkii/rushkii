@@ -1,16 +1,15 @@
-### Hi there 👋
+![Alt Text](https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif)
 
-<!--
-**rushkii/rushkii** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+### Hello there, see about me below:
 
-Here are some ideas to get you started:
+- 🌱 I’m currently learning **Python**
+- 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.
+- ⚡ Fun fact: Fanarts Lover
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+![github stats](https://github-readme-stats.vercel.app/api?username=rushkii&show_icons=true&theme=tokyonight)
+![github toplang](https://github-readme-stats.vercel.app/api/top-langs/?username=rushkii&layout=compact&theme=nightowl)
+
+Reach me on:
+<a href="https://t.me/nekoha" target="_blank"><img src="https://img.shields.io/badge/Telegram-%23E4405F.svg?&?style=social&logo=telegram&logoColor=white" alt="Instagram"></a>
+
+![Alt Text](https://64.media.tumblr.com/59fecf45d53e0262082dfae131ad71aa/tumblr_mk8tt6RUkA1rvrw2eo1_r1_400.gif)
