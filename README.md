@@ -18,6 +18,6 @@
 
 
 <p align="center">
-  <b>Arigatoouuuu (^_^)</b>
+  <b>Arigatoouuuu (^_^)</b><br>
   <img src="https://64.media.tumblr.com/59fecf45d53e0262082dfae131ad71aa/tumblr_mk8tt6RUkA1rvrw2eo1_r1_400.gif">
 </p>
