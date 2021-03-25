@@ -1,4 +1,4 @@
-![Momo-chan](https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif)
+![Momo-chan](https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif?style=center)
 
 ### Hello there, see about me below:
 
@@ -15,3 +15,9 @@ Reach me on:
 
 ### Arigatoouuuu (^_^)
 ![Alt Text](https://64.media.tumblr.com/59fecf45d53e0262082dfae131ad71aa/tumblr_mk8tt6RUkA1rvrw2eo1_r1_400.gif)
+
+
+img[src$="center"] {
+  display:block;
+  margin: 0 auto;
+}
