@@ -4,11 +4,9 @@
 
 <p aling="center"><b>Hello there, see about me below:</b></p>
 
-<p align="center">
-  - 🌱 I’m currently learning **Python**<br>
-  - 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.<br>
-  - ⚡ Fun fact: Fanarts Lover
-</p>
+- 🌱 I’m currently learning **Python**<br>
+- 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.<br>
+- ⚡ Fun fact: Fanarts Lover
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=rushkii&show_icons=true&theme=tokyonight"><br>
