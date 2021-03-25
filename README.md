@@ -16,7 +16,7 @@
 ### Reach me on:
 <a href="https://t.me/nekoha" target="_blank"><img src="https://img.shields.io/badge/Telegram-3f5ed8.svg?&?style=social&logo=telegram&color=blue" alt="Telegram"></a>
 
-### Arigatoouuuu (^_^)
+<div style="font-size:100px"><p align="center">Arigatoouuuu (^_^)</p></div>
 
 <p align="center">
   <img src="https://64.media.tumblr.com/59fecf45d53e0262082dfae131ad71aa/tumblr_mk8tt6RUkA1rvrw2eo1_r1_400.gif">
