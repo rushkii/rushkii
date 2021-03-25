@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  Hello there, see about me below:</h3>
+  <h3>Hello there, see about me below:</h3>
 </p>
 
 <p align="center">
@@ -12,13 +12,20 @@
   - ⚡ Fun fact: Fanarts Lover
 </p>
 
+<p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=rushkii&show_icons=true&theme=tokyonight">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rushkii&layout=compact&theme=nightowl">
+</p>
 
+<p align="center">
   <h3>Reach me on:</h3>
+</p>
 
+<p align="center">
   <a href="https://t.me/nekoha" target="_blank"><img src="https://img.shields.io/badge/Telegram-3f5ed8.svg?&?style=social&logo=telegram&color=blue" alt="Telegram"></a>
+</p>
 
+<p align="center">
   <h3>Arigatoouuuu (^_^)</h3>
   <img src="https://64.media.tumblr.com/59fecf45d53e0262082dfae131ad71aa/tumblr_mk8tt6RUkA1rvrw2eo1_r1_400.gif">
 </p>
