@@ -1,4 +1,4 @@
-![Alt Text](https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif)
+<p align="center"><img src"https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif)"></p>
 
 ### Hello there, see about me below:
 
