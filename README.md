@@ -17,5 +17,5 @@ Reach me on:
 ![Alt Text](https://64.media.tumblr.com/59fecf45d53e0262082dfae131ad71aa/tumblr_mk8tt6RUkA1rvrw2eo1_r1_400.gif)
 
 <p align="center">
-  <img width="600" height="200" src="https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif">
+  <img src="https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif">
 </p>
