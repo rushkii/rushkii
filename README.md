@@ -2,7 +2,7 @@
   <img src="https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif">
 </p>
 
-<p align="center"><b>Hello there, see about me below:</b></p>
+<p align="center"><h3>Hello there, see about me below:</h3></p>
 
 <p align="center">
   - 🌱 I’m currently learning **Python**<br>
