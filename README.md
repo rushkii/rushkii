@@ -7,8 +7,8 @@
 </p>
 
 <p align="center">
-  - 🌱 I’m currently learning **Python**
-  - 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.
+  - 🌱 I’m currently learning **Python**<br>
+  - 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.<br>
   - ⚡ Fun fact: Fanarts Lover
 </p>
 
