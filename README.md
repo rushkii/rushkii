@@ -16,8 +16,6 @@ Reach me on:
 ### Arigatoouuuu (^_^)
 ![Alt Text](https://64.media.tumblr.com/59fecf45d53e0262082dfae131ad71aa/tumblr_mk8tt6RUkA1rvrw2eo1_r1_400.gif)
 
-
-img[src$="center"] {
-  display:block;
-  margin: 0 auto;
-}
+<p align="center">
+  <img width="600" height="200" src="https://www.python.org/python-.png">
+</p>
