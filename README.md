@@ -1,8 +1,8 @@
 <p align="center">
   <img src="https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif">
 
-  <h3>Hello there, see about me below:</h3
-
+  <h3>Hello there, see about me below:</h3>
+  
   - 🌱 I’m currently learning **Python**
   - 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.
   - ⚡ Fun fact: Fanarts Lover
