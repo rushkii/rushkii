@@ -1,13 +1,16 @@
 <p align="center">
   <img src="https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif">
+</p>
 
-  <h3>Hello there, see about me below:</h3>
-  
-  <p>
-    - 🌱 I’m currently learning **Python**
-    - 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.
-    - ⚡ Fun fact: Fanarts Lover
-  </p>
+<p align="center">
+  Hello there, see about me below:</h3>
+</p>
+
+<p align="center">
+  - 🌱 I’m currently learning **Python**
+  - 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.
+  - ⚡ Fun fact: Fanarts Lover
+</p>
 
   <img src="https://github-readme-stats.vercel.app/api?username=rushkii&show_icons=true&theme=tokyonight">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rushkii&layout=compact&theme=nightowl">
