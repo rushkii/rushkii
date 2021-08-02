@@ -9,7 +9,11 @@
 - ⚡ Fun fact: Fanarts Lover
 
 <p align="center">
+  My Statistic
   <img src="https://github-readme-stats.vercel.app/api?username=rushkii&show_icons=true&theme=tokyonight"><br>
+</p>
+<p align="center">
+  My Statistic
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rushkii&layout=compact&theme=nightowl">
 </p>
 
