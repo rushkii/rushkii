@@ -2,14 +2,10 @@
   <img src="https://pa1.narvii.com/6099/bc1c421959650c2038fdf789dc93c1faf2fbedf2_hq.gif">
 </p>
 
-<p align="center">
-  <b>Hello there, see about me below:</b>
-</p>
-<p align="center">
-  - 🌱 I’m currently learning **Python**<br>
-  - 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.<br>
-  - ⚡ Fun fact: Fanarts Lover
- </p>
+### Hello there, see about me below:
+- 🌱 I’m currently learning **Python**<br>
+- 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.<br>
+- ⚡ Fun fact: Fanarts Lover
 
 <p align="center">
   <b>My Statistic</b>
