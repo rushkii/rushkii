@@ -10,8 +10,6 @@
 
 <p align="center">
   <b>My Statistic</b>
-</p>
-<p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=rushkii&show_icons=true&theme=tokyonight"><br>
 </p>
 
