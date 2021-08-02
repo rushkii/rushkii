@@ -10,10 +10,14 @@
 
 <p align="center">
   <b>My Statistic</b>
+</p>
+<p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=rushkii&show_icons=true&theme=tokyonight"><br>
 </p>
 
-### My Languages
+<p align="center">
+  <b>My Languages</b>
+</p>
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rushkii&layout=compact&theme=nightowl">
 </p>
