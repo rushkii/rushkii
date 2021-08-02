@@ -8,7 +8,9 @@
 - 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.<br>
 - ⚡ Fun fact: Fanarts Lover
 
-### My Statistic
+<p align="center">
+  <b>My Statistic</b>
+</p>
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=rushkii&show_icons=true&theme=tokyonight"><br>
 </p>
