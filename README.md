@@ -3,7 +3,7 @@
 </p>
 
 ### Hello there, see about me below:
-- 🌱 I’m currently learning **Python**<br>
+- 🌱 I’m currently learning **Go**<br>
 - 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.<br>
 - ⚡ Fun fact: Fanarts Lover
 
