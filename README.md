@@ -6,6 +6,7 @@
 - 🌱 I’m currently learning **Go**<br>
 - 🤔 I’m looking for help with making an RPG Based Text game for my Telegram bot.<br>
 - ⚡ Fun fact: Fanarts Lover
+- 🎮 Playing: Dota 2, Genshin Impact, Mobile Legends: Bang Bang, and other offline games.
 
 <p align="center">
   <b>My Statistic</b>
