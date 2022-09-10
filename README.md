@@ -45,8 +45,8 @@
   <summary>📊 <b>My Statistic</b></summary>
   <br>
   <p>
-    <img src="https://github-readme-stats.vercel.app/api?username=rushkii&show_icons=true&theme=tokyonight">
-    &nbsp;&nbsp;
+    <img src="https://github-readme-stats.vercel.app/api?username=rushkii&show_icons=true&theme=tokyonight" width=400>
+    &nbsp;
     <img valign="top" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rushkii&layout=compact&theme=nightowl">
   </p>
 </details>
