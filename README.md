@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/kazuha.png">
+  <img src="https://pbs.twimg.com/media/FAAX0exVIAQNGxr?format=png&name=4096x4096">
 </p>
 
 ### Hello there, see about me below:
