@@ -31,7 +31,7 @@
   </ul>
 </details>
 <details>
-  <summary>🎮 <b>Playing Games</b></summary>
+  <summary>🎮 <b>Played Games</b></summary>
   <ul>
     <li><b>Genshin Impact</b>, see my stats <a href="https://github.com/rushkii/kiizuha-genshin/blob/master/README.md">here</a></li>
     <li>Tower of Fantasy</li>
