@@ -15,7 +15,7 @@
   <summary>🤔 <b>Current Project Development</b></summary>
   <ul>
     <li>
-      <a href="https://lore.kernel.org">Lore Kernel <b>Discord</b> & <b>Telegram</b> Bot</a>, is a bot for receiving new emails from the Lore Kernel mailing list.
+      <a href="https://lore.kernel.org">Lore Kernel <b>Discord</b> & <b>Telegram</b> Bot</a>, is a bot for receiving new emails from the Lore Kernel mailing list. <a href="https://github.com/ammarfaizi2">@Ammar Faizi</a> was hired me for build these bots for his community purpose.
     </li>
     <li>
       <b>HoYoDESK</b>, is an unofficial desktop app for <a href="https://hoyolab.com"><b>HoYoLAB</b></a> made by me written in Flutter/Dart, currently private on my local but I want to make it public on GitHub if it's project is done.
