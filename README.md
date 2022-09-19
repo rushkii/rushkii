@@ -53,7 +53,7 @@
 
 <h3>💬 <b>Reach me on</b></h3>
 <p>
-   &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://t.me/kiizuah" target="_blank"><img src="https://img.shields.io/badge/Telegram-3f5ed8.svg?&?style=social&logo=telegram&color=blue" alt="Telegram"></a>
+   &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://t.me/nekoha" target="_blank"><img src="https://img.shields.io/badge/Telegram-3f5ed8.svg?&?style=social&logo=telegram&color=blue" alt="Telegram"></a>
 </p>
 <br>
 <br>
