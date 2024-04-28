@@ -142,8 +142,17 @@ const getBioTotalLines = (bio) => {
     ctx.font = `500 40px sans-serif`
     ctx.fillStyle = "rgba(255, 255, 255, .8)"
     ctx.textAlign = "start"
+
     const hours = (game.duration / 3600).toFixed(1);
-    ctx.fillText(`Played for ${hours} hours this week~`, 230, 950 + ptRecentText + breakHeight);
+    let playedString;
+
+    if (hours > 0) {
+      playedString = `I played for ${hours} hours this week~`;
+    } else {
+      playedString = "I haven't played this week :("
+    }
+
+    ctx.fillText(playedString, 230, 950 + ptRecentText + breakHeight);
 
     ctx.beginPath();
     ctx.strokeStyle = game.is_new ? "#23A559": "rgba(136, 114, 198, .5)";
