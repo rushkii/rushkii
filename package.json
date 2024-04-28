@@ -23,6 +23,7 @@
     "homepage": "https://github.com/rushkii/rushkii#readme",
     "dependencies": {
         "axios": "^1.6.8",
-        "canvas": "^2.11.2"
+        "canvas": "^2.11.2",
+        "dotenv": "^16.4.5"
     }
 }
