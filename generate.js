@@ -6,9 +6,6 @@ import { configDotenv } from "dotenv";
 
 configDotenv();
 
-// debugging workflow error
-console.log(process.env)
-
 const getBioTotalLines = (bio) => {
   // getting the bio total lines~
   let totalLines = 0;
