@@ -27,19 +27,11 @@ jobs:
         run: |
           npm install
 
-      - name: Debug
-        run: echo "$HEADERS"
-
-    #   - name: Run updater.py
-    #     env:
-    #       HEADERS: ${{ secrets.HEADERS }}
-    #     run: |
-    #       python updater.py
-      - name: Run generate.js
+      - name: Run updater.py
         env:
           HEADERS: ${{ secrets.HEADERS }}
         run: |
-          node generate.js
+          python updater.py
 
       - name: Commit and push if changed
         run: |
