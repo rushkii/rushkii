@@ -34,9 +34,12 @@ jobs:
     #       python updater.py
       - name: Run generate.js
         env:
-          HEADERS: ${{ secrets.HEADERS }}
+          HEADERS: ${{ env.HEADERS }}
         run: |
           node generate.js
+
+      - name: Debug
+        run: echo "$HEADERS"
 
       - name: Commit and push if changed
         run: |
