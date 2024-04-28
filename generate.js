@@ -29,7 +29,6 @@ const getBioTotalLines = (bio) => {
   const bio = ghData.bio;
   const bioSplit = bio.split(" ");
   const gameData = rgData.recent_games;
-  const headerPict = "https://www.gnuweeb.org/img/profile-cover.jpg";
 
   // the padding bottom size for the main canvas background.
   const paddingBottomMain = (50 * getBioTotalLines(bioSplit));
@@ -38,7 +37,7 @@ const getBioTotalLines = (bio) => {
   const ctx = canvas.getContext("2d");
 
   const profilePict = await loadImage(ghData.avatar_url);
-  const headerCoverPict = await loadImage(headerPict);
+  const headerCoverPict = await loadImage("./assets/header.jpg");
 
   // create main background canvas rounded.
   ctx.save();
