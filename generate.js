@@ -1,7 +1,10 @@
 import { createCanvas, loadImage } from "canvas";
 import fs from "fs";
 import axios from "axios";
+import { configDotenv } from "dotenv";
 
+
+configDotenv();
 
 const getBioTotalLines = (bio) => {
   // getting the bio total lines~
