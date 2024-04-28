@@ -14,6 +14,7 @@ def calculate_age(born: date):
 def generate_card() -> Tuple[str, str]:
     COMMAND_ARGS = ["node", "generate.js"]
     p = subprocess.Popen(args=COMMAND_ARGS, stdout=subprocess.PIPE)
+    print(p.communicate()[0].decode())
     p.stdout.close()
 
 def update_readme():
