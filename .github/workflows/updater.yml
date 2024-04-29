@@ -39,5 +39,5 @@ jobs:
           git config user.email "kiizuha@gnuweeb.org"
           git diff
           git add README.md generated-profile.png
-          git commit -m "update some magic in README.md"
+          git commit -sm "workflow: update some magic~"
           git push
