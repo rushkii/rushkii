@@ -6,6 +6,23 @@ import { configDotenv } from "dotenv";
 
 configDotenv();
 
+// this file image generator required env var HEADERS
+// for the Discord's recent games API, see required
+// headers below:
+
+// {
+//   "authorization": "",
+//   "x-debug-options": "",
+//   "x-discord-locale": "",
+//   "x-discord-timezone": "",
+//   "x-super-properties": ""
+// }
+
+// you can get your headers by login to your Discord and
+// click your profile, if your profile has recent games
+// data, you should see Discord's recent games API in
+// the network tab browser's devtools.
+
 const getBioTotalLines = (bio) => {
   // getting the bio total lines~
   let totalLines = 0;
