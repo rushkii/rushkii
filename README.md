@@ -12,7 +12,7 @@
 
 ### Hi there 👋😄
 
-I'm **Kiizuha Kanazawa** ([**22**](https://github.com/rushkii/rushkii/commit/b03996bb1be1d5a908fa5f1740be2147426dd3a2) y.o)! I live in Tangerang, Indonesia. 😋<br>
+I'm **Kiizuha Kanazawa** ([**23**](https://github.com/rushkii/rushkii/commit/b03996bb1be1d5a908fa5f1740be2147426dd3a2) y.o)! I live in Tangerang, Indonesia. 😋<br>
 _I'd love to create project that has relation to games or anything I like now._
 
 #### :computer: I'm currently learning:
