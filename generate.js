@@ -37,6 +37,7 @@ const DURATION_TYPE = 2;
 const IS_MARATHON_TYPE = 6;
 const STREAK_TYPE = 8;
 
+const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
 const DISCORD_USER_ID = process.env.DISCORD_USER_ID;
 const DISCORD_API_TOKEN = process.env.DISCORD_API_TOKEN;
 const HEADERS = {
@@ -49,7 +50,7 @@ const QUERY_APPS = querystring.stringify({ application_ids: APPS });
 // fetch API URL
 const ACTIVITY_URL = `https://discord.com/api/v9/content-inventory/users/${DISCORD_USER_ID}/outbox`;
 const APP_INFO_URL = `https://discord.com/api/v9/applications/public?${QUERY_APPS}`;
-const GITHUB_USER_INFO = "https://api.github.com/users/rushkii";
+const GITHUB_USER_INFO = `https://api.github.com/users/${GITHUB_USERNAME}`;
 
 let canvas; // declare canvas globally
 
@@ -99,23 +100,22 @@ const save = () => {
   const [activity, appInfo, github] = await Promise.all([
     axios.get(ACTIVITY_URL, { ...HEADERS }),
     axios.get(APP_INFO_URL, { ...HEADERS }),
-    // axios.get(GITHUB_USER_INFO),
+    axios.get(GITHUB_USER_INFO),
   ]);
 
   // get JSON data
-  // const gh = github.data;
+  const gh = github.data;
   const act = activity.data;
   const app = appInfo.data;
 
   // static variable sections.
-  let profileName = "Kiizuha Kanazawa";
+  let profileName = gh.name;
   profileName =
     profileName.length <= 20
       ? profileName
       : profileName.substring(0, 20) + "...";
 
-  const bio =
-    "Developing projects related to games or anime. I want to become reverse engineer :9";
+  const bio = gh.bio;
   const bioSplit = bio.split(" ");
 
   let totalLines = 0;
@@ -136,7 +136,7 @@ const save = () => {
   );
   const ctx = canvas.getContext("2d");
 
-  const profilePict = await loadImage("https://github.com/rushkii.png");
+  const profilePict = await loadImage(gh.avatar_url);
   const headerCoverPict = await loadImage("./assets/header.jpg");
 
   // create main background canvas rounded.
