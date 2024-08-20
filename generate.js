@@ -305,8 +305,8 @@ const save = () => {
 
     const durations = getGameDurations(game.traits);
 
-    ctx.fillText("⌛️", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
-    const timeMargin = ctx.measureText("⌛️").width;
+    ctx.fillText("⏳", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
+    const timeMargin = ctx.measureText("⏳").width;
 
     ctx.fillText(
       durations,
@@ -314,7 +314,7 @@ const save = () => {
       951 + ptRecentText + breakHeight
     );
 
-    const timeTextMargin = ctx.measureText(`⌛️ ${durations}`);
+    const timeTextMargin = ctx.measureText(`⏳ ${durations}`);
     gameSubMargin += timeTextMargin.width + 10;
 
     if (getTrait(IS_MARATHON_TYPE, game.traits)) {
@@ -349,18 +349,18 @@ const save = () => {
       const text = `${streakDays}d Streak`;
 
       ctx.fillText(
-        "⚡️",
+        "⚡",
         240 + gameSubMargin,
         948 + ptRecentText + breakHeight
       );
-      const cloverMargin = ctx.measureText("⚡️").width;
+      const cloverMargin = ctx.measureText("⚡").width;
 
       ctx.fillText(
         text,
         240 + cloverMargin + gameSubMargin,
         948 + ptRecentText + breakHeight
       );
-      const newbieMargin = ctx.measureText(`⚡️ ${text}`);
+      const newbieMargin = ctx.measureText(`⚡ ${text}`);
 
       gameSubMargin += newbieMargin.width + 10;
     }
