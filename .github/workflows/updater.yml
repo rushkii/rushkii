@@ -2,7 +2,8 @@ name: "Update README.md"
 
 on:
   schedule:
-    - cron: "0 */3 * * *"
+    # change this if u wanna run it every 3 hours `0 */3 * * *`
+    - cron: "*/30 * * * *" # every 30 minutes
   workflow_dispatch:
 
 jobs:
