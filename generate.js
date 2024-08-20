@@ -21,6 +21,7 @@ const APPS = [
 // traits type
 const FIRST_TIME_TYPE = 1;
 const DURATION_TYPE = 2;
+const IS_PLAYING_TYPE = 3;
 const IS_MARATHON_TYPE = 6;
 const STREAK_TYPE = 8;
 
@@ -261,7 +262,21 @@ const save = () => {
     ctx.font = "700 45px sans-serif";
     ctx.fillStyle = "#fff";
     ctx.textAlign = "start";
-    ctx.fillText(game.extra.game_name, 230, 880 + ptRecentText + breakHeight);
+
+    const gameNameText = game.extra.game_name;
+    const gameNameMargin = ctx.measureText(gameNameText).width;
+
+    ctx.fillText(gameNameText, 230, 880 + ptRecentText + breakHeight);
+
+    if (getTrait(IS_PLAYING_TYPE, game.traits)) {
+      ctx.font = "600 30px sans-serif";
+      ctx.fillStyle = "#00ff00";
+      ctx.fillText(
+        "🎮 Currently Playing!",
+        250 + gameNameMargin,
+        870 + ptRecentText + breakHeight
+      );
+    }
 
     ctx.font = "500 40px sans-serif";
     ctx.fillStyle = "#ffffff";
@@ -348,11 +363,7 @@ const save = () => {
       const streakDays = getTrait(STREAK_TYPE, game.traits);
       const text = `${streakDays}d Streak`;
 
-      ctx.fillText(
-        "⚡",
-        240 + gameSubMargin,
-        948 + ptRecentText + breakHeight
-      );
+      ctx.fillText("⚡", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
       const cloverMargin = ctx.measureText("⚡").width;
 
       ctx.fillText(
