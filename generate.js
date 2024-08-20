@@ -24,7 +24,7 @@ const DURATION_TYPE = 2;
 const IS_MARATHON_TYPE = 6;
 const STREAK_TYPE = 8;
 
-const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
+const GITHUB_USERNAME = process.env.GH_USERNAME;
 const DISCORD_USER_ID = process.env.DISCORD_USER_ID;
 const DISCORD_API_TOKEN = process.env.DISCORD_API_TOKEN;
 const HEADERS = {
