@@ -29,7 +29,9 @@ jobs:
 
       - name: Run updater.py
         env:
-          HEADERS: ${{ secrets.HEADERS }}
+          DISCORD_API_TOKEN: ${{ secrets.DISCORD_API_TOKEN }}
+          DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
         run: |
           python updater.py
 
