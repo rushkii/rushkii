@@ -7,19 +7,6 @@ import moment from "moment";
 
 configDotenv();
 
-// this file image generator required env var HEADERS
-// for the Discord's recent games API, see required
-// headers below:
-
-// {
-//   "authorization": ""
-// }
-
-// you can get your headers by login to your Discord and
-// click your profile, if your profile has recent games
-// data, you should see Discord's recent games API in
-// the network tab browser's devtools.
-
 // application info IDs
 const APPS = [
   "1247227126416146462",
