@@ -2,6 +2,8 @@ import { createCanvas, loadImage } from "canvas";
 import fs from "fs";
 import axios from "axios";
 import { configDotenv } from "dotenv";
+import querystring from "node:querystring";
+import moment from "moment";
 
 configDotenv();
 
@@ -10,11 +12,7 @@ configDotenv();
 // headers below:
 
 // {
-//   "authorization": "",
-//   "x-debug-options": "",
-//   "x-discord-locale": "",
-//   "x-discord-timezone": "",
-//   "x-super-properties": ""
+//   "authorization": ""
 // }
 
 // you can get your headers by login to your Discord and
@@ -22,44 +20,123 @@ configDotenv();
 // data, you should see Discord's recent games API in
 // the network tab browser's devtools.
 
-const getBioTotalLines = (bio) => {
-  // getting the bio total lines~
-  let totalLines = 0;
-  for (let i = 0; i < bio.length; i += 11) totalLines++;
-  return totalLines;
+// application info IDs
+const APPS = [
+  "1247227126416146462",
+  "1129504517474504826",
+  "569008830701240340",
+  "700136079562375258",
+  "1129504209226711190",
+  "1260340082150346932",
+  "762434991303950386",
+];
+
+// traits type
+const FIRST_TIME_TYPE = 1;
+const DURATION_TYPE = 2;
+const IS_MARATHON_TYPE = 6;
+const STREAK_TYPE = 8;
+
+const DISCORD_USER_ID = process.env.DISCORD_USER_ID;
+const DISCORD_API_TOKEN = process.env.DISCORD_API_TOKEN;
+const HEADERS = {
+  headers: {
+    authorization: DISCORD_API_TOKEN,
+  },
+};
+const QUERY_APPS = querystring.stringify({ application_ids: APPS });
+
+// fetch API URL
+const ACTIVITY_URL = `https://discord.com/api/v9/content-inventory/users/${DISCORD_USER_ID}/outbox`;
+const APP_INFO_URL = `https://discord.com/api/v9/applications/public?${QUERY_APPS}`;
+const GITHUB_USER_INFO = "https://api.github.com/users/rushkii";
+
+let canvas; // declare canvas globally
+
+const getApplicationIconUrl = (applicationId, data) => {
+  const iconHash = data.find((e) => e.id === applicationId).icon;
+  return `https://cdn.discordapp.com/app-icons/${applicationId}/${iconHash}.png`;
+};
+
+const getTrait = (type, traits) => {
+  const trait = traits.find((t) => t.type === type);
+  return trait && Object.entries(trait).find(([key]) => key !== "type")?.[1];
+};
+
+const getGameDurations = (traits) => {
+  const durationSec = getTrait(DURATION_TYPE, traits);
+
+  const seconds = durationSec % 60;
+  const minutes = Math.floor((durationSec % 3600) / 60);
+  const hours = Math.floor(durationSec / 3600);
+
+  return `
+    ${String(hours).padStart(2, "0")}:
+    ${String(minutes).padStart(2, "0")}:
+    ${String(seconds).padStart(2, "0")}
+  `.replace(/\s+/g, "");
+};
+
+const getPlayedSince = (date) => {
+  const str = moment(date).fromNow();
+  return str.replace(" days", "d");
+};
+
+const save = () => {
+  // save the generated image.
+  const buffer = canvas.toBuffer("image/png", {
+    quality: 1,
+    compressionLevel: 0,
+  });
+  const output = "generated-profile.png";
+  fs.writeFileSync(output, buffer);
+  console.log(`Image saved to \x1b[1m${output}\x1b[0m`);
+  process.exit(1);
 };
 
 (async () => {
   // data fetching GitHub and Discord's Recent Games API.
-  const respGh = await axios.get("https://api.github.com/users/rushkii");
-  const respRG = await axios.get(
-    "https://discord.com/api/v9/users/333017995368464385/profile/recent-games",
-    { headers: JSON.parse(process.env.HEADERS) }
-  );
-  const ghData = respGh.data;
-  const rgData = respRG.data;
+  const [activity, appInfo, github] = await Promise.all([
+    axios.get(ACTIVITY_URL, { ...HEADERS }),
+    axios.get(APP_INFO_URL, { ...HEADERS }),
+    // axios.get(GITHUB_USER_INFO),
+  ]);
+
+  // get JSON data
+  // const gh = github.data;
+  const act = activity.data;
+  const app = appInfo.data;
 
   // static variable sections.
-  let profileName = ghData.name;
+  let profileName = "Kiizuha Kanazawa";
   profileName =
     profileName.length <= 20
       ? profileName
       : profileName.substring(0, 20) + "...";
-  const bio = ghData.bio;
+
+  const bio =
+    "Developing projects related to games or anime. I want to become reverse engineer :9";
   const bioSplit = bio.split(" ");
-  const gameData = rgData.recent_games;
+
+  let totalLines = 0;
+  for (let i = 0; i < bioSplit.length; i += 11) totalLines++;
+
+  const gameData = act.entries;
 
   // the padding bottom size for the main canvas background.
-  const paddingBottomMain = 50 * getBioTotalLines(bioSplit);
+  const paddingBottomMain = 50 * totalLines;
+  const calculateDataLength = gameData.length === 0 ? 1 : gameData.length;
 
-  const canvas = createCanvas(
+  canvas = createCanvas(
     1920,
-    790 + (230 * gameData.length + 10 * gameData.length) + paddingBottomMain,
+    790 +
+      (230 * calculateDataLength + 10 * calculateDataLength) +
+      paddingBottomMain,
     "png"
   );
   const ctx = canvas.getContext("2d");
 
-  const profilePict = await loadImage(ghData.avatar_url);
+  const profilePict = await loadImage("https://github.com/rushkii.png");
   const headerCoverPict = await loadImage("./assets/header.jpg");
 
   // create main background canvas rounded.
@@ -98,7 +175,7 @@ const getBioTotalLines = (bio) => {
   // write profile name.
   ctx.save();
   ctx.beginPath();
-  ctx.font = `700 100px sans-serif`;
+  ctx.font = "700 100px sans-serif";
   ctx.fillStyle = "#fff";
   ctx.textAlign = "start";
   ctx.fillText(profileName, 450, 530);
@@ -107,43 +184,79 @@ const getBioTotalLines = (bio) => {
   // write bio with chunks so it won't overflow.
   ctx.save();
   ctx.beginPath();
-  ctx.font = `300 50px sans-serif`;
+  ctx.font = "300 50px sans-serif";
   ctx.fillStyle = "rgba(255, 255, 255, .7)";
   ctx.textAlign = "start";
 
   let spaceBio = 0;
-  let totalLines = 0;
   for (let i = 0; i < bioSplit.length; i += 11) {
     const chunk = bioSplit.slice(i, i + 11).join(" ");
     ctx.fillText(chunk, 30, 700 + spaceBio);
-
     spaceBio += 50;
-    totalLines++;
   }
   ctx.restore();
 
-  // write "RECENT PLAYED GAMES" heading with linear gradient color.
-  let gradientText = ctx.createLinearGradient(0, 765, 1000, 765);
-  gradientText.addColorStop(0.1, "#f6aede");
-  gradientText.addColorStop(0.3, "#B958A9");
-  gradientText.addColorStop(0.5, "#8872C6");
-  ctx.font = `700 50px sans-serif`;
+  // padding top for "RECENT PLAYED GAMES" text.
+  const ptRecentText = totalLines * 100 - 50 * totalLines;
+  const recentGameText = "RECENT GAMES ACTIVITIES";
+
+  ctx.font = "700 50px sans-serif";
   ctx.textAlign = "start";
+
+  const rgTextMargin = ctx.measureText(recentGameText).width;
+
+  // write "RECENT PLAYED GAMES" heading with linear gradient color.
+  let gradientText = ctx.createLinearGradient(900, 1000, 1000, 765);
+  gradientText.addColorStop(0.3, "#f6aede");
+  gradientText.addColorStop(0.5, "#B958A9");
+  gradientText.addColorStop(1.0, "#8872C6");
   ctx.fillStyle = gradientText;
 
-  // padding top for "RECENT PLAYED GAMES" text
-  const ptRecentText =
-    getBioTotalLines(bioSplit) * 100 - 50 * getBioTotalLines(bioSplit);
-  ctx.fillText("RECENT PLAYED GAMES", 30, 765 + ptRecentText);
+  ctx.fillText(
+    recentGameText,
+    canvas.width / 2 - rgTextMargin / 2,
+    765 + ptRecentText
+  );
+
+  // check if the user has the game activities data.
+  if (gameData.length === 0) {
+    const noDataText = "YOU DON'T HAVE GAME ACTIVITIES DATA!";
+    const subNoDataText =
+      "Try to play any games while Discord desktop app is active.";
+
+    ctx.fillStyle = "rgba(255, 255, 255, .7)";
+    ctx.font = "600 40px sans-serif";
+
+    const marginTitle = ctx.measureText(noDataText).width;
+
+    ctx.fillText(
+      noDataText,
+      canvas.width / 2 - marginTitle / 2,
+      900 + ptRecentText
+    );
+
+    ctx.fillStyle = "rgba(255, 255, 255, .7)";
+    ctx.font = "500 35px sans-serif";
+
+    const marginSubtitle = ctx.measureText(subNoDataText).width;
+
+    ctx.fillText(
+      subNoDataText,
+      canvas.width / 2 - marginSubtitle / 2,
+      950 + ptRecentText
+    );
+
+    save();
+  }
+
+  // height value for the margin between the game column items.
+  let breakHeight = 0;
 
   // display recent game data sections.
-  let breakHeight = 0;
-  for (const key in gameData) {
-    const game = gameData[key];
-    const gameIconSrc = `https://cdn.discordapp.com/app-icons/${game.application.id}/${game.application.icon}.png`;
-    const resp = await axios.get(gameIconSrc, { responseType: "arraybuffer" });
-    const gameIcon = await loadImage(resp.data);
-    let gameNameMargin = 0;
+  for (const game of gameData) {
+    const gameIconSrc = getApplicationIconUrl(game.extra.application_id, app);
+    const gameIcon = await loadImage(gameIconSrc);
+    let gameSubMargin = 0;
 
     ctx.save();
     ctx.beginPath();
@@ -158,59 +271,122 @@ const getBioTotalLines = (bio) => {
     ctx.fill();
     ctx.clip();
 
-    if (game.is_new) {
-      ctx.font = `500 40px sans-serif`;
-      ctx.fillStyle = "#23A559";
-      ctx.textAlign = "start";
-      ctx.fillText("☘️", 230, 880 + ptRecentText + breakHeight);
-
-      const newbieIconMetrics = ctx.measureText("☘️");
-      gameNameMargin = newbieIconMetrics.width + 10;
-    }
-
-    ctx.font = `700 45px sans-serif`;
+    ctx.font = "700 45px sans-serif";
     ctx.fillStyle = "#fff";
     ctx.textAlign = "start";
-    ctx.fillText(
-      game.application.name,
-      230 + gameNameMargin,
-      880 + ptRecentText + breakHeight
-    );
+    ctx.fillText(game.extra.game_name, 230, 880 + ptRecentText + breakHeight);
 
-    ctx.font = `500 40px sans-serif`;
-    ctx.fillStyle = "rgba(255, 255, 255, .8)";
+    ctx.font = "500 40px sans-serif";
+    ctx.fillStyle = "#ffffff";
     ctx.textAlign = "start";
 
-    const hours = (game.duration / 3600).toFixed(1);
-    let playedString;
+    const playedSince = getPlayedSince(game.ended_at);
 
-    if (hours > 0) {
-      playedString = `I played for ${hours} hours this week~`;
-    } else {
-      playedString = "I haven't played this week :(";
+    ctx.fillText("🎮", 230, 945 + ptRecentText + breakHeight);
+    const ctrlrMargin = ctx.measureText("🎮").width;
+
+    ctx.fillText(
+      playedSince,
+      235 + ctrlrMargin,
+      950 + ptRecentText + breakHeight
+    );
+
+    const playedMargin = ctx.measureText(`🎮 ${playedSince}`);
+    gameSubMargin = playedMargin.width + 10;
+
+    if (getTrait(FIRST_TIME_TYPE, game.traits)) {
+      ctx.font = "500 40px sans-serif";
+      ctx.fillStyle = "#ffffff";
+      ctx.textAlign = "start";
+
+      ctx.fillText("☘️", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
+      const cloverMargin = ctx.measureText("☘️").width;
+
+      ctx.fillText(
+        "New Player",
+        245 + cloverMargin + gameSubMargin,
+        948 + ptRecentText + breakHeight
+      );
+      const newbieMargin = ctx.measureText("☘️ New Player");
+
+      gameSubMargin += newbieMargin.width + 10;
     }
 
-    ctx.fillText(playedString, 230, 950 + ptRecentText + breakHeight);
+    ctx.font = "500 40px sans-serif";
+    ctx.fillStyle = "#ffffff";
+    ctx.textAlign = "start";
+
+    const durations = getGameDurations(game.traits);
+
+    ctx.fillText("⌛️", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
+    const timeMargin = ctx.measureText("⌛️").width;
+
+    ctx.fillText(
+      durations,
+      245 + timeMargin + gameSubMargin,
+      951 + ptRecentText + breakHeight
+    );
+
+    const timeTextMargin = ctx.measureText(`⌛️ ${durations}`);
+    gameSubMargin += timeTextMargin.width + 10;
+
+    if (getTrait(IS_MARATHON_TYPE, game.traits)) {
+      ctx.font = "500 40px sans-serif";
+      ctx.fillStyle = "#ffffff";
+      ctx.textAlign = "start";
+
+      const duration = getTrait(DURATION_TYPE, game.traits);
+      const hours = Math.floor(duration / 3600);
+
+      const text = `${hours}h Marathon`;
+
+      ctx.fillText("⏰", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
+      const cloverMargin = ctx.measureText("⏰").width;
+
+      ctx.fillText(
+        text,
+        240 + cloverMargin + gameSubMargin,
+        948 + ptRecentText + breakHeight
+      );
+      const newbieMargin = ctx.measureText(`⏰ ${text}`);
+
+      gameSubMargin += newbieMargin.width + 10;
+    }
+
+    if (getTrait(STREAK_TYPE, game.traits) !== undefined) {
+      ctx.font = "500 40px sans-serif";
+      ctx.fillStyle = "#ffffff";
+      ctx.textAlign = "start";
+
+      const streakDays = getTrait(STREAK_TYPE, game.traits);
+      const text = `${streakDays}d Streak`;
+
+      ctx.fillText(
+        "⚡️",
+        240 + gameSubMargin,
+        948 + ptRecentText + breakHeight
+      );
+      const cloverMargin = ctx.measureText("⚡️").width;
+
+      ctx.fillText(
+        text,
+        240 + cloverMargin + gameSubMargin,
+        948 + ptRecentText + breakHeight
+      );
+      const newbieMargin = ctx.measureText(`⚡️ ${text}`);
+
+      gameSubMargin += newbieMargin.width + 10;
+    }
 
     ctx.beginPath();
-    ctx.strokeStyle = game.is_new ? "#23A559" : "rgba(136, 114, 198, .5)";
-    ctx.lineWidth = 15;
     ctx.roundRect(50, 825 + ptRecentText + breakHeight, 150, 150, [30]);
-    ctx.stroke();
     ctx.clip();
     ctx.drawImage(gameIcon, 50, 825 + ptRecentText + breakHeight, 150, 150);
     ctx.closePath();
     ctx.restore();
+
     breakHeight += 230;
   }
 
-  // save the generated image.
-  const buffer = canvas.toBuffer("image/png", {
-    quality: 1,
-    compressionLevel: 0,
-  });
-  const output = "generated-profile.png";
-  fs.writeFileSync(output, buffer);
-  console.log(`Image saved to \x1b[1m${output}\x1b[0m`);
-  process.exit(1);
+  save();
 })();
