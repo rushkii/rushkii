@@ -288,7 +288,7 @@ const save = () => {
       ctx.fillStyle = "#00ff00";
       playedSince = "🎮 Currently Playing!";
     } else {
-      ctx.fillStyle = "#ffffff";
+      ctx.fillStyle = "#fff";
       playedSince = `🎮 ${getPlayedSince(game.ended_at)}`;
     }
 
@@ -300,7 +300,7 @@ const save = () => {
     const playedMargin = ctx.measureText(playedSince);
     gameSubMargin = playedMargin.width + 20;
 
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#fff";
 
     if (getTrait(FIRST_TIME_TYPE, game.traits)) {
       // ctx.fillText("☘️", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
@@ -344,9 +344,6 @@ const save = () => {
     }
 
     if (getTrait(STREAK_TYPE, game.traits) !== undefined) {
-      ctx.font = "500 40px sans-serif";
-      ctx.fillStyle = "#ffffff";
-
       const streakDays = getTrait(STREAK_TYPE, game.traits);
       const text = `⚡${streakDays}d Streak`;
 
