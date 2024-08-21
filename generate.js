@@ -422,6 +422,32 @@ const save = () => {
       gameSubMargin += newbieMargin.width + 20;
     }
 
+    if (getTrait(IS_TRENDING_TYPE, game.traits)) {
+      const trendingIcon = new Image();
+      trendingIcon.src = "./assets/icons/fire.png";
+
+      ctx.drawImage(
+        trendingIcon,
+        235 + gameSubMargin,
+        910 + ptRecentText + breakHeight,
+        35,
+        35
+      );
+
+      const cloverMargin = ctx.measureText("🔥").width;
+
+      const text = "Trending";
+
+      ctx.fillText(
+        text,
+        230 + cloverMargin + gameSubMargin,
+        940 + ptRecentText + breakHeight
+      );
+      const newbieMargin = ctx.measureText(`🔥 ${text}`);
+
+      gameSubMargin += newbieMargin.width + 20;
+    }
+
     ctx.beginPath();
     ctx.roundRect(50, 825 + ptRecentText + breakHeight, 150, 150, [30]);
     ctx.clip();
