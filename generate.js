@@ -14,6 +14,7 @@ const DURATION_TYPE = 2;
 const IS_PLAYING_TYPE = 3;
 const IS_MARATHON_TYPE = 6;
 const STREAK_TYPE = 8;
+const IS_TRENDING_TYPE = 9
 
 const GITHUB_USERNAME = process.env.GH_USERNAME;
 const DISCORD_USER_ID = process.env.DISCORD_USER_ID;
