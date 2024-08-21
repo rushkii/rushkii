@@ -28,6 +28,9 @@ jobs:
         run: |
           npm install
 
+      - name: Install Cairo lib
+        run: sudo apt-get install -y cairo
+
       - name: Run updater.py
         env:
           DISCORD_API_TOKEN: ${{ secrets.DISCORD_API_TOKEN }}
