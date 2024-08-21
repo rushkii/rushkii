@@ -43,7 +43,6 @@ const registerAllFonts = async () => {
       .split("/")
       .at(-1)
       .replace(".ttf", "");
-    console.log(toFamily);
     registerFont(font, { family: toFamily });
   }
 };
@@ -311,8 +310,12 @@ const save = () => {
     ctx.fillStyle = "#fff";
 
     if (getTrait(FIRST_TIME_TYPE, game.traits)) {
+      ctx.font = `35px "NotoEmoji-SemiBold"`;
+
       ctx.fillText("☘️", 235 + gameSubMargin, 940 + ptRecentText + breakHeight);
       const cloverMargin = ctx.measureText("☘️").width;
+
+      ctx.font = `35px "Outfit-SemiBold"`;
 
       const text = "New Player";
 
@@ -328,8 +331,12 @@ const save = () => {
 
     const durations = `${getGameDurations(game.traits)}`;
 
+    ctx.font = `35px "NotoEmoji-SemiBold"`;
+
     ctx.fillText("⏳", 235 + gameSubMargin, 940 + ptRecentText + breakHeight);
     const timeMargin = ctx.measureText("⏳").width;
+
+    ctx.font = `35px "Outfit-SemiBold"`;
 
     ctx.fillText(
       durations,
@@ -346,8 +353,12 @@ const save = () => {
 
       const text = `${hours}h Marathon`;
 
+      ctx.font = `35px "NotoEmoji-SemiBold"`;
+
       ctx.fillText("⏰", 240 + gameSubMargin, 940 + ptRecentText + breakHeight);
       const marathonMargin = ctx.measureText("⏰").width;
+
+      ctx.font = `35px "Outfit-SemiBold"`;
 
       ctx.fillText(
         text,
@@ -363,8 +374,12 @@ const save = () => {
       const streakDays = getTrait(STREAK_TYPE, game.traits);
       const text = `${streakDays}d Streak`;
 
+      ctx.font = `35px "NotoEmoji-SemiBold"`;
+
       ctx.fillText("⚡", 235 + gameSubMargin, 940 + ptRecentText + breakHeight);
       const streakMargin = ctx.measureText("⚡").width;
+
+      ctx.font = `35px "Outfit-SemiBold"`;
 
       ctx.fillText(
         text,
