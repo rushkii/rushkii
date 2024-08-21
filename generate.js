@@ -1,5 +1,6 @@
-import { createCanvas, loadImage } from "canvas";
+import { createCanvas, loadImage, registerFont } from "canvas";
 import fs from "fs";
+import { glob } from "glob";
 import axios from "axios";
 import { configDotenv } from "dotenv";
 import querystring from "node:querystring";
@@ -28,6 +29,23 @@ const ACTIVITY_URL = `https://discord.com/api/v9/content-inventory/users/${DISCO
 const GITHUB_USER_INFO = `https://api.github.com/users/${GITHUB_USERNAME}`;
 
 let canvas; // declare canvas globally
+
+const registerAllFonts = async () => {
+  // please manually install the fonts in your OS machine.
+
+  const fonts = await glob("./assets/fonts/**/*.ttf", {
+    ignore: "node_modules/**",
+  });
+
+  for (const font of fonts) {
+    const toFamily = font
+      .replace(/\\/g, "/")
+      .split("/")
+      .at(-1)
+      .replace(".ttf", "");
+    registerFont(font, { family: toFamily });
+  }
+};
 
 const getApplicationIconUrl = (applicationId, data) => {
   const iconHash = data.find((e) => e.id === applicationId).icon;
@@ -75,6 +93,8 @@ const save = () => {
 };
 
 (async () => {
+  await registerAllFonts();
+
   // data fetching GitHub and Discord's Recent Games API.
   const [activity, github] = await Promise.all([
     axios.get(ACTIVITY_URL, { ...HEADERS }),
@@ -159,18 +179,17 @@ const save = () => {
   // write profile name.
   ctx.save();
   ctx.beginPath();
-  ctx.font = "700 100px sans-serif";
+  ctx.font = `100px "Outfit-ExtraBold"`;
   ctx.fillStyle = "#fff";
-  ctx.textAlign = "start";
+
   ctx.fillText(profileName, 450, 530);
   ctx.restore();
 
   // write bio with chunks so it won't overflow.
   ctx.save();
   ctx.beginPath();
-  ctx.font = "300 50px sans-serif";
+  ctx.font = `50px "Outfit-SemiBold"`;
   ctx.fillStyle = "rgba(255, 255, 255, .7)";
-  ctx.textAlign = "start";
 
   let spaceBio = 0;
   for (let i = 0; i < bioSplit.length; i += 11) {
@@ -184,8 +203,7 @@ const save = () => {
   const ptRecentText = totalLines * 100 - 50 * totalLines;
   const recentGameText = "RECENT GAMES ACTIVITIES";
 
-  ctx.font = "700 50px sans-serif";
-  ctx.textAlign = "start";
+  ctx.font = `60px "Outfit-ExtraBold"`;
 
   const rgTextMargin = ctx.measureText(recentGameText).width;
 
@@ -209,7 +227,7 @@ const save = () => {
       "Try to play any games while Discord desktop app is active.";
 
     ctx.fillStyle = "rgba(255, 255, 255, .7)";
-    ctx.font = "600 40px sans-serif";
+    ctx.font = `50px "Outfit-ExtraBold"`;
 
     const marginTitle = ctx.measureText(noDataText).width;
 
@@ -220,7 +238,7 @@ const save = () => {
     );
 
     ctx.fillStyle = "rgba(255, 255, 255, .7)";
-    ctx.font = "500 35px sans-serif";
+    ctx.font = `40px "Outfit-Regular"`;
 
     const marginSubtitle = ctx.measureText(subNoDataText).width;
 
@@ -255,121 +273,90 @@ const save = () => {
     ctx.fill();
     ctx.clip();
 
-    ctx.font = "700 45px sans-serif";
+    ctx.font = `50px "Outfit-ExtraBold"`;
     ctx.fillStyle = "#fff";
-    ctx.textAlign = "start";
 
     const gameNameText = game.extra.game_name;
-    const gameNameMargin = ctx.measureText(gameNameText).width;
+    // const gameNameMargin = ctx.measureText(gameNameText).width;
 
     ctx.fillText(gameNameText, 230, 880 + ptRecentText + breakHeight);
 
+    let playedSince = "";
+    ctx.font = `35px "Outfit-SemiBold"`;
+
     if (getTrait(IS_PLAYING_TYPE, game.traits)) {
-      ctx.font = "600 30px sans-serif";
       ctx.fillStyle = "#00ff00";
-      ctx.fillText(
-        "🎮 Currently Playing!",
-        250 + gameNameMargin,
-        870 + ptRecentText + breakHeight
-      );
+      playedSince = "🎮 Currently Playing!";
+    } else {
+      ctx.fillStyle = "#ffffff";
+      playedSince = `🎮 ${getPlayedSince(game.ended_at)}`;
     }
 
-    ctx.font = "500 40px sans-serif";
+    // ctx.fillText("🎮", 230, 945 + ptRecentText + breakHeight);
+    // const ctrlrMargin = ctx.measureText("🎮").width;
+
+    ctx.fillText(playedSince, 235, 940 + ptRecentText + breakHeight);
+
+    const playedMargin = ctx.measureText(playedSince);
+    gameSubMargin = playedMargin.width + 20;
+
     ctx.fillStyle = "#ffffff";
-    ctx.textAlign = "start";
-
-    const playedSince = getPlayedSince(game.ended_at);
-
-    ctx.fillText("🎮", 230, 945 + ptRecentText + breakHeight);
-    const ctrlrMargin = ctx.measureText("🎮").width;
-
-    ctx.fillText(
-      playedSince,
-      235 + ctrlrMargin,
-      950 + ptRecentText + breakHeight
-    );
-
-    const playedMargin = ctx.measureText(`🎮 ${playedSince}`);
-    gameSubMargin = playedMargin.width + 10;
 
     if (getTrait(FIRST_TIME_TYPE, game.traits)) {
-      ctx.font = "500 40px sans-serif";
-      ctx.fillStyle = "#ffffff";
-      ctx.textAlign = "start";
+      // ctx.fillText("☘️", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
+      // const cloverMargin = ctx.measureText("☘️").width;
 
-      ctx.fillText("☘️", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
-      const cloverMargin = ctx.measureText("☘️").width;
+      const text = "☘️ New Player";
 
-      ctx.fillText(
-        "New Player",
-        245 + cloverMargin + gameSubMargin,
-        948 + ptRecentText + breakHeight
-      );
-      const newbieMargin = ctx.measureText("☘️ New Player");
+      ctx.fillText(text, 245 + gameSubMargin, 940 + ptRecentText + breakHeight);
+      const newbieMargin = ctx.measureText(text);
 
-      gameSubMargin += newbieMargin.width + 10;
+      gameSubMargin += newbieMargin.width + 20;
     }
 
-    ctx.font = "500 40px sans-serif";
-    ctx.fillStyle = "#ffffff";
-    ctx.textAlign = "start";
+    const durations = `⏳ ${getGameDurations(game.traits)}`;
 
-    const durations = getGameDurations(game.traits);
-
-    ctx.fillText("⏳", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
-    const timeMargin = ctx.measureText("⏳").width;
+    // ctx.fillText("⏳", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
+    // const timeMargin = ctx.measureText("⏳").width;
 
     ctx.fillText(
       durations,
-      245 + timeMargin + gameSubMargin,
-      951 + ptRecentText + breakHeight
+      245 + gameSubMargin,
+      940 + ptRecentText + breakHeight
     );
 
-    const timeTextMargin = ctx.measureText(`⏳ ${durations}`);
-    gameSubMargin += timeTextMargin.width + 10;
+    const timeTextMargin = ctx.measureText(durations);
+    gameSubMargin += timeTextMargin.width + 20;
 
     if (getTrait(IS_MARATHON_TYPE, game.traits)) {
-      ctx.font = "500 40px sans-serif";
-      ctx.fillStyle = "#ffffff";
-      ctx.textAlign = "start";
-
       const duration = getTrait(DURATION_TYPE, game.traits);
       const hours = Math.floor(duration / 3600);
 
-      const text = `${hours}h Marathon`;
+      const text = `⏰ ${hours}h Marathon`;
 
-      ctx.fillText("⏰", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
-      const cloverMargin = ctx.measureText("⏰").width;
+      // ctx.fillText("⏰", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
+      // const cloverMargin = ctx.measureText("⏰").width;
 
-      ctx.fillText(
-        text,
-        240 + cloverMargin + gameSubMargin,
-        948 + ptRecentText + breakHeight
-      );
-      const newbieMargin = ctx.measureText(`⏰ ${text}`);
+      ctx.fillText(text, 240 + gameSubMargin, 940 + ptRecentText + breakHeight);
+      const newbieMargin = ctx.measureText(text);
 
-      gameSubMargin += newbieMargin.width + 10;
+      gameSubMargin += newbieMargin.width + 20;
     }
 
     if (getTrait(STREAK_TYPE, game.traits) !== undefined) {
       ctx.font = "500 40px sans-serif";
       ctx.fillStyle = "#ffffff";
-      ctx.textAlign = "start";
 
       const streakDays = getTrait(STREAK_TYPE, game.traits);
-      const text = `${streakDays}d Streak`;
+      const text = `⚡${streakDays}d Streak`;
 
-      ctx.fillText("⚡", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
-      const cloverMargin = ctx.measureText("⚡").width;
+      // ctx.fillText("⚡", 240 + gameSubMargin, 948 + ptRecentText + breakHeight);
+      // const cloverMargin = ctx.measureText("⚡").width;
 
-      ctx.fillText(
-        text,
-        240 + cloverMargin + gameSubMargin,
-        948 + ptRecentText + breakHeight
-      );
-      const newbieMargin = ctx.measureText(`⚡ ${text}`);
+      ctx.fillText(text, 240 + gameSubMargin, 940 + ptRecentText + breakHeight);
+      const newbieMargin = ctx.measureText(text);
 
-      gameSubMargin += newbieMargin.width + 10;
+      gameSubMargin += newbieMargin.width + 20;
     }
 
     ctx.beginPath();
