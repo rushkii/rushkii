@@ -7,17 +7,6 @@ import moment from "moment";
 
 configDotenv();
 
-// application info IDs
-const APPS = [
-  "1247227126416146462",
-  "1129504517474504826",
-  "569008830701240340",
-  "700136079562375258",
-  "1129504209226711190",
-  "1260340082150346932",
-  "762434991303950386",
-];
-
 // traits type
 const FIRST_TIME_TYPE = 1;
 const DURATION_TYPE = 2;
@@ -33,11 +22,9 @@ const HEADERS = {
     authorization: DISCORD_API_TOKEN,
   },
 };
-const QUERY_APPS = querystring.stringify({ application_ids: APPS });
 
 // fetch API URL
 const ACTIVITY_URL = `https://discord.com/api/v9/content-inventory/users/${DISCORD_USER_ID}/outbox`;
-const APP_INFO_URL = `https://discord.com/api/v9/applications/public?${QUERY_APPS}`;
 const GITHUB_USER_INFO = `https://api.github.com/users/${GITHUB_USERNAME}`;
 
 let canvas; // declare canvas globally
@@ -71,6 +58,10 @@ const getPlayedSince = (date) => {
   return str.replace(" days", "d");
 };
 
+const getApplicationIds = (entries) => {
+  return entries.map((entry) => entry.extra.application_id);
+};
+
 const save = () => {
   // save the generated image.
   const buffer = canvas.toBuffer("image/png", {
@@ -85,15 +76,22 @@ const save = () => {
 
 (async () => {
   // data fetching GitHub and Discord's Recent Games API.
-  const [activity, appInfo, github] = await Promise.all([
+  const [activity, github] = await Promise.all([
     axios.get(ACTIVITY_URL, { ...HEADERS }),
-    axios.get(APP_INFO_URL, { ...HEADERS }),
     axios.get(GITHUB_USER_INFO),
   ]);
 
   // get JSON data
   const gh = github.data;
   const act = activity.data;
+  const gameData = act.entries;
+
+  const QUERY_APPS = querystring.stringify({
+    application_ids: getApplicationIds(gameData),
+  });
+  const APP_INFO_URL = `https://discord.com/api/v9/applications/public?${QUERY_APPS}`;
+  const appInfo = await axios.get(APP_INFO_URL, { ...HEADERS });
+
   const app = appInfo.data;
 
   // static variable sections.
@@ -108,8 +106,6 @@ const save = () => {
 
   let totalLines = 0;
   for (let i = 0; i < bioSplit.length; i += 11) totalLines++;
-
-  const gameData = act.entries;
 
   // the padding bottom size for the main canvas background.
   const paddingBottomMain = 50 * totalLines;
