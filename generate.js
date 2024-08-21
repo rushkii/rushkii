@@ -1,4 +1,4 @@
-import { createCanvas, loadImage, registerFont } from "canvas";
+import { createCanvas, loadImage, registerFont, Image } from "canvas";
 import fs from "fs";
 import { glob } from "glob";
 import axios from "axios";
@@ -14,7 +14,7 @@ const DURATION_TYPE = 2;
 const IS_PLAYING_TYPE = 3;
 const IS_MARATHON_TYPE = 6;
 const STREAK_TYPE = 8;
-const IS_TRENDING_TYPE = 9
+const IS_TRENDING_TYPE = 9;
 
 const GITHUB_USERNAME = process.env.GH_USERNAME;
 const DISCORD_USER_ID = process.env.DISCORD_USER_ID;
@@ -283,6 +283,7 @@ const save = () => {
     ctx.fillText(gameNameText, 230, 880 + ptRecentText + breakHeight);
 
     let playedSince = "";
+    ctx.font = `35px "Outfit-SemiBold"`;
 
     if (getTrait(IS_PLAYING_TYPE, game.traits)) {
       ctx.fillStyle = "#00ff00";
@@ -292,12 +293,17 @@ const save = () => {
       playedSince = `${getPlayedSince(game.ended_at)}`;
     }
 
-    ctx.font = `35px "NotoEmoji-SemiBold"`;
+    const controllerIcon = new Image();
+    controllerIcon.src = "./assets/icons/controller.png";
 
-    ctx.fillText("🎮", 235, 940 + ptRecentText + breakHeight);
+    ctx.drawImage(
+      controllerIcon,
+      235,
+      910 + ptRecentText + breakHeight,
+      35,
+      35
+    );
     const ctrlrMargin = ctx.measureText("🎮").width;
-
-    ctx.font = `35px "Outfit-SemiBold"`;
 
     ctx.fillText(
       playedSince,
@@ -311,12 +317,18 @@ const save = () => {
     ctx.fillStyle = "#fff";
 
     if (getTrait(FIRST_TIME_TYPE, game.traits)) {
-      ctx.font = `35px "NotoEmoji-SemiBold"`;
+      const flowerIcon = new Image();
+      flowerIcon.src = "./assets/icons/flower.png";
 
-      ctx.fillText("☘️", 235 + gameSubMargin, 940 + ptRecentText + breakHeight);
+      ctx.drawImage(
+        flowerIcon,
+        235 + gameSubMargin,
+        910 + ptRecentText + breakHeight,
+        35,
+        35
+      );
+
       const cloverMargin = ctx.measureText("☘️").width;
-
-      ctx.font = `35px "Outfit-SemiBold"`;
 
       const text = "New Player";
 
@@ -332,16 +344,22 @@ const save = () => {
 
     const durations = `${getGameDurations(game.traits)}`;
 
-    ctx.font = `35px "NotoEmoji-SemiBold"`;
+    const hourglassIcon = new Image();
+    hourglassIcon.src = "./assets/icons/hourglass.png";
 
-    ctx.fillText("⏳", 235 + gameSubMargin, 940 + ptRecentText + breakHeight);
+    ctx.drawImage(
+      hourglassIcon,
+      235 + gameSubMargin,
+      910 + ptRecentText + breakHeight,
+      35,
+      35
+    );
+
     const timeMargin = ctx.measureText("⏳").width;
-
-    ctx.font = `35px "Outfit-SemiBold"`;
 
     ctx.fillText(
       durations,
-      235 + timeMargin + gameSubMargin,
+      230 + timeMargin + gameSubMargin,
       940 + ptRecentText + breakHeight
     );
 
@@ -354,12 +372,18 @@ const save = () => {
 
       const text = `${hours}h Marathon`;
 
-      ctx.font = `35px "NotoEmoji-SemiBold"`;
+      const alarmIcon = new Image();
+      alarmIcon.src = "./assets/icons/alarm.png";
 
-      ctx.fillText("⏰", 240 + gameSubMargin, 940 + ptRecentText + breakHeight);
+      ctx.drawImage(
+        alarmIcon,
+        235 + gameSubMargin,
+        910 + ptRecentText + breakHeight,
+        35,
+        35
+      );
+
       const marathonMargin = ctx.measureText("⏰").width;
-
-      ctx.font = `35px "Outfit-SemiBold"`;
 
       ctx.fillText(
         text,
@@ -375,16 +399,22 @@ const save = () => {
       const streakDays = getTrait(STREAK_TYPE, game.traits);
       const text = `${streakDays}d Streak`;
 
-      ctx.font = `35px "NotoEmoji-SemiBold"`;
+      const lightningIcon = new Image();
+      lightningIcon.src = "./assets/icons/lightning.png";
 
-      ctx.fillText("⚡", 235 + gameSubMargin, 940 + ptRecentText + breakHeight);
+      ctx.drawImage(
+        lightningIcon,
+        235 + gameSubMargin,
+        910 + ptRecentText + breakHeight,
+        35,
+        35
+      );
+
       const streakMargin = ctx.measureText("⚡").width;
-
-      ctx.font = `35px "Outfit-SemiBold"`;
 
       ctx.fillText(
         text,
-        235 + streakMargin + gameSubMargin,
+        230 + streakMargin + gameSubMargin,
         940 + ptRecentText + breakHeight
       );
       const newbieMargin = ctx.measureText(`⚡ ${text}`);
