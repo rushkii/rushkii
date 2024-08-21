@@ -82,6 +82,31 @@ const getApplicationIds = (entries) => {
   return entries.map((entry) => entry.extra.application_id);
 };
 
+const writeStatistic = ({
+  ctx,
+  text,
+  iconFile,
+  margin,
+  paddingTop,
+  spaceBetween,
+}) => {
+  const icon = new Image();
+  icon.src = "./assets/icons/" + iconFile;
+
+  ctx.drawImage(icon, 235 + margin, 910 + paddingTop + spaceBetween, 35, 35);
+
+  const emojiMargin = ctx.measureText("☘️").width;
+
+  ctx.fillText(
+    text,
+    235 + emojiMargin + margin,
+    940 + paddingTop + spaceBetween
+  );
+  const textMargin = ctx.measureText(`☘️ ${text}`);
+
+  return textMargin.width + 20;
+};
+
 const save = () => {
   // save the generated image.
   const buffer = canvas.toBuffer("image/png", {
@@ -294,188 +319,84 @@ const save = () => {
       playedSince = `${getPlayedSince(game.ended_at)}`;
     }
 
-    const controllerIcon = new Image();
-    controllerIcon.src = "./assets/icons/controller.png";
-
-    ctx.drawImage(
-      controllerIcon,
-      235,
-      910 + ptRecentText + breakHeight,
-      35,
-      35
-    );
-    const ctrlrMargin = ctx.measureText("🎮").width;
-
-    ctx.fillText(
-      playedSince,
-      235 + ctrlrMargin,
-      940 + ptRecentText + breakHeight
-    );
-
-    const playedMargin = ctx.measureText(`🎮 ${playedSince}`);
-    gameSubMargin = playedMargin.width + 20;
+    gameSubMargin += writeStatistic({
+      ctx,
+      text: playedSince,
+      iconFile: "controller.png",
+      margin: gameSubMargin,
+      paddingTop: ptRecentText,
+      spaceBetween: breakHeight,
+    });
 
     ctx.fillStyle = "#fff";
 
     if (getTrait(FIRST_TIME_TYPE, game.traits)) {
-      const flowerIcon = new Image();
-      flowerIcon.src = "./assets/icons/flower.png";
-
-      ctx.drawImage(
-        flowerIcon,
-        235 + gameSubMargin,
-        910 + ptRecentText + breakHeight,
-        35,
-        35
-      );
-
-      const cloverMargin = ctx.measureText("☘️").width;
-
-      const text = "New Player";
-
-      ctx.fillText(
-        text,
-        235 + cloverMargin + gameSubMargin,
-        940 + ptRecentText + breakHeight
-      );
-      const newbieMargin = ctx.measureText(`☘️ ${text}`);
-
-      gameSubMargin += newbieMargin.width + 20;
+      gameSubMargin += writeStatistic({
+        ctx,
+        text: "New Player",
+        iconFile: "flower.png",
+        margin: gameSubMargin,
+        paddingTop: ptRecentText,
+        spaceBetween: breakHeight,
+      });
     }
 
-    const durations = `${getGameDurations(game.traits)}`;
-
-    const hourglassIcon = new Image();
-    hourglassIcon.src = "./assets/icons/hourglass.png";
-
-    ctx.drawImage(
-      hourglassIcon,
-      235 + gameSubMargin,
-      910 + ptRecentText + breakHeight,
-      35,
-      35
-    );
-
-    const timeMargin = ctx.measureText("⏳").width;
-
-    ctx.fillText(
-      durations,
-      230 + timeMargin + gameSubMargin,
-      940 + ptRecentText + breakHeight
-    );
-
-    const timeTextMargin = ctx.measureText(`⏳ ${durations}`);
-    gameSubMargin += timeTextMargin.width + 20;
+    gameSubMargin += writeStatistic({
+      ctx,
+      text: getGameDurations(game.traits),
+      iconFile: "hourglass.png",
+      margin: gameSubMargin,
+      paddingTop: ptRecentText,
+      spaceBetween: breakHeight,
+    });
 
     if (getTrait(IS_MARATHON_TYPE, game.traits)) {
       const duration = getTrait(DURATION_TYPE, game.traits);
       const hours = Math.floor(duration / 3600);
-
-      const text = `${hours}h Marathon`;
-
-      const alarmIcon = new Image();
-      alarmIcon.src = "./assets/icons/alarm.png";
-
-      ctx.drawImage(
-        alarmIcon,
-        235 + gameSubMargin,
-        910 + ptRecentText + breakHeight,
-        35,
-        35
-      );
-
-      const marathonMargin = ctx.measureText("⏰").width;
-
-      ctx.fillText(
-        text,
-        235 + marathonMargin + gameSubMargin,
-        940 + ptRecentText + breakHeight
-      );
-      const newbieMargin = ctx.measureText(`⏰ ${text}`);
-
-      gameSubMargin += newbieMargin.width + 20;
+      gameSubMargin += writeStatistic({
+        ctx,
+        text: `${hours}h Marathon`,
+        iconFile: "alarm.png",
+        margin: gameSubMargin,
+        paddingTop: ptRecentText,
+        spaceBetween: breakHeight,
+      });
     }
 
     const streak = getTrait(STREAK_TYPE, game.traits);
     if (streak !== undefined) {
-      const streakDays = streak;
-      const text = `${streakDays}d Streak`;
-
-      const lightningIcon = new Image();
-      lightningIcon.src = "./assets/icons/lightning.png";
-
-      ctx.drawImage(
-        lightningIcon,
-        235 + gameSubMargin,
-        910 + ptRecentText + breakHeight,
-        35,
-        35
-      );
-
-      const streakMargin = ctx.measureText("⚡").width;
-
-      ctx.fillText(
-        text,
-        230 + streakMargin + gameSubMargin,
-        940 + ptRecentText + breakHeight
-      );
-      const newbieMargin = ctx.measureText(`⚡ ${text}`);
-
-      gameSubMargin += newbieMargin.width + 20;
+      gameSubMargin += writeStatistic({
+        ctx,
+        text: `${streak}d Streak`,
+        iconFile: "lightning.png",
+        margin: gameSubMargin,
+        paddingTop: ptRecentText,
+        spaceBetween: breakHeight,
+      });
     }
 
     const returning = getTrait(IS_RETURNING_TYPE, game.traits);
     if (returning !== undefined) {
       const returnSince = moment(returning).fromNow();
-      const text = `Returned ${returnSince}`;
-
-      const icon = new Image();
-      icon.src = "./assets/icons/rotate.png";
-
-      ctx.drawImage(
-        icon,
-        235 + gameSubMargin,
-        910 + ptRecentText + breakHeight,
-        35,
-        35
-      );
-
-      const streakMargin = ctx.measureText("↪️").width;
-
-      ctx.fillText(
-        text,
-        230 + streakMargin + gameSubMargin,
-        940 + ptRecentText + breakHeight
-      );
-      const margin = ctx.measureText(`↪️ ${text}`);
-
-      gameSubMargin += margin.width + 20;
+      gameSubMargin += writeStatistic({
+        ctx,
+        text: `Returned ${returnSince}`,
+        iconFile: "rotate.png",
+        margin: gameSubMargin,
+        paddingTop: ptRecentText,
+        spaceBetween: breakHeight,
+      });
     }
 
     if (getTrait(IS_TRENDING_TYPE, game.traits)) {
-      const trendingIcon = new Image();
-      trendingIcon.src = "./assets/icons/fire.png";
-
-      ctx.drawImage(
-        trendingIcon,
-        235 + gameSubMargin,
-        910 + ptRecentText + breakHeight,
-        35,
-        35
-      );
-
-      const cloverMargin = ctx.measureText("🔥").width;
-
-      const text = "Trending";
-
-      ctx.fillText(
-        text,
-        230 + cloverMargin + gameSubMargin,
-        940 + ptRecentText + breakHeight
-      );
-      const newbieMargin = ctx.measureText(`🔥 ${text}`);
-
-      gameSubMargin += newbieMargin.width + 20;
+      writeStatistic({
+        ctx,
+        text: "Trending",
+        iconFile: "fire.png",
+        margin: gameSubMargin,
+        paddingTop: ptRecentText,
+        spaceBetween: breakHeight,
+      });
     }
 
     ctx.beginPath();
