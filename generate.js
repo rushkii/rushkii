@@ -12,6 +12,7 @@ configDotenv();
 const FIRST_TIME_TYPE = 1;
 const DURATION_TYPE = 2;
 const IS_PLAYING_TYPE = 3;
+const IS_RETURNING_TYPE = 5;
 const IS_MARATHON_TYPE = 6;
 const STREAK_TYPE = 8;
 const IS_TRENDING_TYPE = 9;
@@ -84,7 +85,7 @@ const getApplicationIds = (entries) => {
 const save = () => {
   // save the generated image.
   const buffer = canvas.toBuffer("image/png", {
-    quality: .5,
+    quality: 0.5,
     compressionLevel: 9,
   });
   const output = "generated-profile.png";
@@ -395,8 +396,9 @@ const save = () => {
       gameSubMargin += newbieMargin.width + 20;
     }
 
-    if (getTrait(STREAK_TYPE, game.traits) !== undefined) {
-      const streakDays = getTrait(STREAK_TYPE, game.traits);
+    const streak = getTrait(STREAK_TYPE, game.traits);
+    if (streak !== undefined) {
+      const streakDays = streak;
       const text = `${streakDays}d Streak`;
 
       const lightningIcon = new Image();
@@ -420,6 +422,34 @@ const save = () => {
       const newbieMargin = ctx.measureText(`⚡ ${text}`);
 
       gameSubMargin += newbieMargin.width + 20;
+    }
+
+    const returning = getTrait(IS_RETURNING_TYPE, game.traits);
+    if (returning !== undefined) {
+      const returnSince = moment(returning).fromNow();
+      const text = `Returned ${returnSince}`;
+
+      const icon = new Image();
+      icon.src = "./assets/icons/rotate.png";
+
+      ctx.drawImage(
+        icon,
+        235 + gameSubMargin,
+        910 + ptRecentText + breakHeight,
+        35,
+        35
+      );
+
+      const streakMargin = ctx.measureText("↪️").width;
+
+      ctx.fillText(
+        text,
+        230 + streakMargin + gameSubMargin,
+        940 + ptRecentText + breakHeight
+      );
+      const margin = ctx.measureText(`↪️ ${text}`);
+
+      gameSubMargin += margin.width + 20;
     }
 
     if (getTrait(IS_TRENDING_TYPE, game.traits)) {
