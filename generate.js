@@ -84,8 +84,8 @@ const getApplicationIds = (entries) => {
 const save = () => {
   // save the generated image.
   const buffer = canvas.toBuffer("image/png", {
-    quality: 1,
-    compressionLevel: 0,
+    quality: .5,
+    compressionLevel: 9,
   });
   const output = "generated-profile.png";
   fs.writeFileSync(output, buffer);
