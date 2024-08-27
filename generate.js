@@ -317,7 +317,7 @@ const save = () => {
       playedSince = "Currently Playing!";
     } else {
       ctx.fillStyle = "#fff";
-      playedSince = `${getPlayedSince(game.ended_at)}`;
+      playedSince = getPlayedSince(game.ended_at);
     }
 
     gameSubMargin += writeStatistic({
@@ -390,10 +390,22 @@ const save = () => {
     }
 
     if (getTrait(IS_TRENDING_TYPE, game.traits)) {
-      writeStatistic({
+      gameSubMargin += writeStatistic({
         ctx,
         text: "Trending",
         iconFile: "fire.png",
+        margin: gameSubMargin,
+        paddingTop: ptRecentText,
+        spaceBetween: breakHeight,
+      });
+    }
+
+    const releaseDate = getTrait(NEW_RELEASE_DATE_TYPE, game.traits);
+    if (releaseDate !== undefined) {
+      writeStatistic({
+        ctx,
+        text: moment(releaseDate).format("ll"),
+        iconFile: "rocket.png",
         margin: gameSubMargin,
         paddingTop: ptRecentText,
         spaceBetween: breakHeight,
