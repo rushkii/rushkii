@@ -14,6 +14,7 @@ const DURATION_TYPE = 2;
 const IS_PLAYING_TYPE = 3;
 const IS_RETURNING_TYPE = 5;
 const IS_MARATHON_TYPE = 6;
+const NEW_RELEASE_DATE_TYPE = 7;
 const STREAK_TYPE = 8;
 const IS_TRENDING_TYPE = 9;
 
