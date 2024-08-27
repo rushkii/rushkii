@@ -381,7 +381,7 @@ const save = () => {
       const returnSince = moment(returning).fromNow();
       gameSubMargin += writeStatistic({
         ctx,
-        text: `Returned ${returnSince}`,
+        text: `Quit playing ${returnSince}`,
         iconFile: "rotate.png",
         margin: gameSubMargin,
         paddingTop: ptRecentText,
