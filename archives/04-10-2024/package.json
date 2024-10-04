@@ -1,0 +1,31 @@
+{
+    "name": "rushkii",
+    "version": "1.0.0",
+    "description": "Kiizuha's GitHub Profile",
+    "main": "generate.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node generate.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rushkii/rushkii.git"
+    },
+    "keywords": [
+        "github-profile"
+    ],
+    "author": "Kiizuha",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/rushkii/rushkii/issues"
+    },
+    "homepage": "https://github.com/rushkii/rushkii#readme",
+    "dependencies": {
+        "axios": "^1.6.8",
+        "canvas": "^2.11.2",
+        "dotenv": "^16.4.5",
+        "glob": "^11.0.0",
+        "moment": "^2.30.1"
+    }
+}
