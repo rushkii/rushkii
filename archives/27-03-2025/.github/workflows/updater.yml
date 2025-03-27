@@ -1,0 +1,46 @@
+name: "Update README.md"
+
+on:
+  schedule:
+    # change this if u wanna run it every 3 hours `0 */3 * * *`
+    - cron: "*/30 * * * *" # every 30 minutes
+  workflow_dispatch:
+
+jobs:
+  check_and_update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install NodeJS packages
+        run: |
+          npm install
+
+      - name: Run updater.py
+        env:
+          DISCORD_API_TOKEN: ${{ secrets.DISCORD_API_TOKEN }}
+          DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
+        run: |
+          python updater.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "Yuuka Chan"
+          git config user.email "kiizuha@gnuweeb.org"
+          git diff
+          git add README.md generated-profile.png
+          git commit -sm "workflow: update some magic~"
+          git push
