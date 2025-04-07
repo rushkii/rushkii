@@ -5,18 +5,14 @@ from datetime import date
 
 
 def update_str_age(age: int, text: str):
-    return re.sub(
-        r"Kiizuha Kanazawa\*\* \(\[\*\*\d+\*\*\]",
-        f"Kiizuha Kanazawa** ([**{age}**]",
-        text,
-    )
+    return re.sub(r"Kiizuha Kanazawa\*\* \(\[\*\*\d+\*\*\]", rf"Kiizuha Kanazawa** ([**{age}**]", text)
 
 def calculate_age(born: date):
     today = date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 def generate_card() -> Tuple[str, str]:
-    COMMAND_ARGS = ["npm", "run", "build:run"]
+    COMMAND_ARGS = ["node", "generate.js"]
     p = subprocess.Popen(args=COMMAND_ARGS, stdout=subprocess.PIPE)
     print(p.communicate()[0].decode())
     p.stdout.close()
@@ -30,6 +26,6 @@ def update_readme():
         f.write(text)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     generate_card()
     update_readme()

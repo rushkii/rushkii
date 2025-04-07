@@ -32,13 +32,15 @@ jobs:
         env:
           DISCORD_API_TOKEN: ${{ secrets.DISCORD_API_TOKEN }}
           DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
         run: |
           python updater.py
 
       - name: Commit and push if changed
         run: |
-          git config user.name "Amami Nodoka"
+          git config user.name "Yuuka Chan"
           git config user.email "kiizuha@gnuweeb.org"
-          git add README.md output
+          git diff
+          git add README.md generated-profile.png
           git commit -sm "workflow: update some magic~"
           git push

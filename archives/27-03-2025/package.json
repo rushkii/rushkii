@@ -2,20 +2,18 @@
     "name": "rushkii",
     "version": "1.0.0",
     "description": "Kiizuha's GitHub Profile",
-    "main": "src/index.ts",
+    "main": "generate.js",
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "tsc",
-        "build:run": "tsc && node --no-warnings dist"
+        "start": "node generate.js"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/rushkii/rushkii.git"
     },
     "keywords": [
-        "github-profile",
-        "discord"
+        "github-profile"
     ],
     "author": "Kiizuha",
     "license": "MIT",
@@ -29,9 +27,5 @@
         "dotenv": "^16.4.5",
         "glob": "^11.0.0",
         "moment": "^2.30.1"
-    },
-    "devDependencies": {
-        "@types/node": "^22.13.14",
-        "typescript": "^5.8.2"
     }
 }
