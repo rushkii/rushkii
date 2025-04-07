@@ -1,0 +1,399 @@
+{
+    "entries": [
+        {
+            "id": "1355884788912885932",
+            "author_id": "1283321824293421087",
+            "author_type": 1,
+            "content_type": 5,
+            "traits": [
+                {
+                    "type": 3,
+                    "is_live": true
+                }
+            ],
+            "extra": {
+                "type": "listened_session_extra",
+                "last_update": "2025-03-30T14:38:23.181345+00:00",
+                "entries": [
+                    {
+                        "media": {
+                            "type": "listened_media_extra",
+                            "provider": 1,
+                            "media_type": 1,
+                            "parent_title": "Resah Jadi Luka",
+                            "title": "Resah Jadi Luka",
+                            "image_url": "https://i.scdn.co/image/ab67616d0000b27326458812554408283d9e2bd1",
+                            "artists": [
+                                {
+                                    "external_id": "3EaScgA3zh2rORlbrAL8RI",
+                                    "name": "Daun Jatuh"
+                                }
+                            ],
+                            "external_id": "2sULdMKWdBdK2ZtntuFvSb",
+                            "external_parent_id": "3gUZpvR4h9ErseH3AzaHJL"
+                        },
+                        "verification_state": 1,
+                        "repeat_count": 2
+                    },
+                    {
+                        "media": {
+                            "type": "listened_media_extra",
+                            "provider": 1,
+                            "media_type": 1,
+                            "parent_title": "Dunia Batas",
+                            "title": "Untuk Perempuan Yang Sedang Di Pelukan",
+                            "image_url": "https://i.scdn.co/image/ab67616d0000b2738ee03809d40edb632fadd3c0",
+                            "artists": [
+                                {
+                                    "external_id": "2Ooa3TrmlskyBftzenv6xQ",
+                                    "name": "Payung Teduh"
+                                }
+                            ],
+                            "external_id": "0urpBLpcm6DOGzs86rcKd8",
+                            "external_parent_id": "26FxxaKDiIGxEm549dRtaZ"
+                        },
+                        "verification_state": 1,
+                        "repeat_count": 2
+                    },
+                    {
+                        "media": {
+                            "type": "listened_media_extra",
+                            "provider": 1,
+                            "media_type": 1,
+                            "parent_title": "Sailor Song",
+                            "title": "Sailor Song",
+                            "image_url": "https://i.scdn.co/image/ab67616d0000b273e6065f209e0a01986206bd53",
+                            "artists": [
+                                {
+                                    "external_id": "1iCnM8foFssWlPRLfAbIwo",
+                                    "name": "Gigi Perez"
+                                }
+                            ],
+                            "external_id": "2262bWmqomIaJXwCRHr13j",
+                            "external_parent_id": "68CN2LzY8MoxO2udy2C22e"
+                        },
+                        "verification_state": 1,
+                        "repeat_count": 2
+                    },
+                    {
+                        "media": {
+                            "type": "listened_media_extra",
+                            "provider": 1,
+                            "media_type": 1,
+                            "parent_title": "Our Biggest Thing Ever",
+                            "title": "Seluruh Nafas Ini",
+                            "image_url": "https://i.scdn.co/image/ab67616d0000b273382b1b7f79e2e760b9ac188e",
+                            "artists": [
+                                {
+                                    "external_id": "1v1khTmozNfxB2ET1Ep288",
+                                    "name": "Last Child"
+                                },
+                                {
+                                    "external_id": "4L0t6db3fWWG07bh14TxUw",
+                                    "name": "Gisel"
+                                }
+                            ],
+                            "external_id": "2vzpoecVhBE1pKtHzKONaN",
+                            "external_parent_id": "0lmWHPA0DAJY2xKscafErm"
+                        },
+                        "verification_state": 1,
+                        "repeat_count": 0
+                    },
+                    {
+                        "media": {
+                            "type": "listened_media_extra",
+                            "provider": 1,
+                            "media_type": 1,
+                            "parent_title": "Perspektif",
+                            "title": "L",
+                            "image_url": "https://i.scdn.co/image/ab67616d0000b2734e540197973e1e46eedc06c7",
+                            "artists": [
+                                {
+                                    "external_id": "5vTG3EyFrsARtIGDWZNRzu",
+                                    "name": "Halstage"
+                                }
+                            ],
+                            "external_id": "3aClK9EBpl7QeYEuOq1eMI",
+                            "external_parent_id": "2B5g8Dua4wmu7JOnNX9e8K"
+                        },
+                        "verification_state": 1,
+                        "repeat_count": 0
+                    }
+                ]
+            },
+            "participants": [
+                "1283321824293421087"
+            ],
+            "expires_at": "2025-03-30T15:08:23.181458+00:00",
+            "signature": {
+                "signature": "f6f1a61e21ed56e45774b50ce50c27fc9ec658499c92a25bb90b91676ef60a71",
+                "kid": "AtDT4Kx25Wmu5cfllPxAiwZKgPbmLsaeHitpx/duvPY=",
+                "version": 1
+            }
+        },
+        {
+            "id": "1355549880319475862",
+            "author_id": "1283321824293421087",
+            "author_type": 1,
+            "content_type": 1,
+            "traits": [
+                {
+                    "type": 2,
+                    "duration_seconds": 9593
+                },
+                {
+                    "type": 1,
+                    "first_time": true
+                },
+                {
+                    "type": 8,
+                    "streak_count_days": 4
+                }
+            ],
+            "extra": {
+                "type": "played_game_extra",
+                "game_name": "God of War Ragnarök",
+                "application_id": "1286371274003841115",
+                "platform": 0
+            },
+            "participants": [
+                "1283321824293421087"
+            ],
+            "ended_at": "2025-03-29T14:31:16.367000+00:00",
+            "started_at": "2025-03-29T11:51:23.367000+00:00",
+            "signature": {
+                "signature": "bc450c7dad3d7b6c2aa11eca9ec04e55c20cacfe506d76d4ddf004b9b3f05262",
+                "kid": "AtDT4Kx25Wmu5cfllPxAiwZKgPbmLsaeHitpx/duvPY=",
+                "version": 1
+            }
+        },
+        {
+            "id": "1355242030766493798",
+            "author_id": "1283321824293421087",
+            "author_type": 1,
+            "content_type": 1,
+            "traits": [
+                {
+                    "type": 2,
+                    "duration_seconds": 17084
+                },
+                {
+                    "type": 6,
+                    "marathon": true
+                },
+                {
+                    "type": 1,
+                    "first_time": true
+                }
+            ],
+            "extra": {
+                "type": "played_game_extra",
+                "game_name": "Age of Empires IV",
+                "application_id": "1129504181414273136",
+                "platform": 0
+            },
+            "participants": [
+                "1283321824293421087"
+            ],
+            "ended_at": "2025-03-28T18:07:59.314000+00:00",
+            "started_at": "2025-03-28T13:23:15.314000+00:00",
+            "signature": {
+                "signature": "b74cd990053cc66e773955e161de38bab18db9affe591cb5a39ff16b664e8ef1",
+                "kid": "AtDT4Kx25Wmu5cfllPxAiwZKgPbmLsaeHitpx/duvPY=",
+                "version": 1
+            }
+        },
+        {
+            "id": "1355107107061497920",
+            "author_id": "1283321824293421087",
+            "author_type": 1,
+            "content_type": 1,
+            "traits": [
+                {
+                    "type": 2,
+                    "duration_seconds": 9302
+                },
+                {
+                    "type": 1,
+                    "first_time": true
+                },
+                {
+                    "type": 8,
+                    "streak_count_days": 5
+                }
+            ],
+            "extra": {
+                "type": "played_game_extra",
+                "game_name": "Age of Empires III: Definitive Edition",
+                "application_id": "1124351777471484065",
+                "platform": 0
+            },
+            "participants": [
+                "1283321824293421087"
+            ],
+            "ended_at": "2025-03-28T09:11:50.996000+00:00",
+            "started_at": "2025-03-28T06:36:48.996000+00:00",
+            "signature": {
+                "signature": "21d88051d1558a57aa08e026204ab78071e1893a26f5c41f52d8730c997c0427",
+                "kid": "AtDT4Kx25Wmu5cfllPxAiwZKgPbmLsaeHitpx/duvPY=",
+                "version": 1
+            }
+        },
+        {
+            "id": "1354538786490679366",
+            "author_id": "1283321824293421087",
+            "author_type": 1,
+            "content_type": 1,
+            "traits": [
+                {
+                    "type": 2,
+                    "duration_seconds": 605
+                },
+                {
+                    "type": 1,
+                    "first_time": true
+                }
+            ],
+            "extra": {
+                "type": "played_game_extra",
+                "game_name": "Assassin's Creed Unity",
+                "application_id": "425435152634609664",
+                "platform": 0
+            },
+            "participants": [
+                "1283321824293421087"
+            ],
+            "ended_at": "2025-03-26T19:33:32.813000+00:00",
+            "started_at": "2025-03-26T19:23:27.813000+00:00",
+            "signature": {
+                "signature": "b9e67eef4644d0b22ead5dda11b508f2a32b8d9d4a01b67e40353a043fa4e59d",
+                "kid": "AtDT4Kx25Wmu5cfllPxAiwZKgPbmLsaeHitpx/duvPY=",
+                "version": 1
+            }
+        },
+        {
+            "id": "1354535531429626027",
+            "author_id": "1283321824293421087",
+            "author_type": 1,
+            "content_type": 1,
+            "traits": [
+                {
+                    "type": 2,
+                    "duration_seconds": 175
+                },
+                {
+                    "type": 5,
+                    "resurrected_last_played": "2025-01-05T07:58:24.034000+00:00"
+                }
+            ],
+            "extra": {
+                "type": "played_game_extra",
+                "game_name": "Red Dead Redemption 2",
+                "application_id": "643897785271189524",
+                "platform": 0
+            },
+            "participants": [
+                "1283321824293421087"
+            ],
+            "ended_at": "2025-03-26T19:20:36.746000+00:00",
+            "started_at": "2025-03-26T19:17:41.746000+00:00",
+            "signature": {
+                "signature": "1341e3b5db94040af43634ef01cb2e0f33ec1677646eddbbffdeb0ce4d9f88a3",
+                "kid": "AtDT4Kx25Wmu5cfllPxAiwZKgPbmLsaeHitpx/duvPY=",
+                "version": 1
+            }
+        },
+        {
+            "id": "1353451553016778893",
+            "author_id": "1283321824293421087",
+            "author_type": 1,
+            "content_type": 1,
+            "traits": [
+                {
+                    "type": 2,
+                    "duration_seconds": 3255
+                },
+                {
+                    "type": 8,
+                    "streak_count_days": 3
+                }
+            ],
+            "extra": {
+                "type": "played_game_extra",
+                "game_name": "Assassin's Creed Odyssey",
+                "application_id": "497898978466070528",
+                "platform": 0
+            },
+            "participants": [
+                "1283321824293421087"
+            ],
+            "ended_at": "2025-03-23T19:33:16.153000+00:00",
+            "started_at": "2025-03-23T18:39:01.153000+00:00",
+            "signature": {
+                "signature": "9a6495b6a3cac528e47aa991ab5268aadce377b6413ca37e01308f02a4a824ee",
+                "kid": "AtDT4Kx25Wmu5cfllPxAiwZKgPbmLsaeHitpx/duvPY=",
+                "version": 1
+            }
+        },
+        {
+            "id": "1353364620848529500",
+            "author_id": "1283321824293421087",
+            "author_type": 1,
+            "content_type": 1,
+            "traits": [
+                {
+                    "type": 2,
+                    "duration_seconds": 10798
+                }
+            ],
+            "extra": {
+                "type": "played_game_extra",
+                "game_name": "Desktop Mate",
+                "application_id": "1326566138464698549",
+                "platform": 0
+            },
+            "participants": [
+                "1283321824293421087"
+            ],
+            "ended_at": "2025-03-23T13:47:49.909000+00:00",
+            "started_at": "2025-03-23T10:47:51.909000+00:00",
+            "signature": {
+                "signature": "cff3f7044c8630bdc53ef7eb7f3d20545b1b11b1ffbeecd7b532f021d1603502",
+                "kid": "AtDT4Kx25Wmu5cfllPxAiwZKgPbmLsaeHitpx/duvPY=",
+                "version": 1
+            }
+        },
+        {
+            "id": "1347640155095437415",
+            "author_id": "1283321824293421087",
+            "author_type": 1,
+            "content_type": 1,
+            "traits": [
+                {
+                    "type": 2,
+                    "duration_seconds": 1888
+                },
+                {
+                    "type": 5,
+                    "resurrected_last_played": "2025-01-29T23:29:26.005000+00:00"
+                }
+            ],
+            "extra": {
+                "type": "played_game_extra",
+                "game_name": "DYNASTY WARRIORS: ORIGINS",
+                "application_id": "1329752121461051432",
+                "platform": 0
+            },
+            "participants": [
+                "1283321824293421087"
+            ],
+            "ended_at": "2025-03-07T18:40:50.918000+00:00",
+            "started_at": "2025-03-07T18:09:22.918000+00:00",
+            "signature": {
+                "signature": "11bf6c3f6652d60247ec6ba53632746a1cbdbb4e8eb3f821d160cd51bd4ce36a",
+                "kid": "AtDT4Kx25Wmu5cfllPxAiwZKgPbmLsaeHitpx/duvPY=",
+                "version": 1
+            }
+        }
+    ]
+}

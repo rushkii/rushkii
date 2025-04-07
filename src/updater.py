@@ -5,11 +5,7 @@ from datetime import date
 
 
 def update_str_age(age: int, text: str):
-    return re.sub(
-        r"Kiizuha Kanazawa\*\* \(\[\*\*\d+\*\*\]",
-        f"Kiizuha Kanazawa** ([**{age}**]",
-        text,
-    )
+    return re.sub(r"Kiizuha Kanazawa\*\* \(\[\*\*\d+\*\*\]", rf"Kiizuha Kanazawa** ([**{age}**]", text)
 
 def calculate_age(born: date):
     today = date.today()
@@ -30,6 +26,6 @@ def update_readme():
         f.write(text)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     generate_card()
     update_readme()
