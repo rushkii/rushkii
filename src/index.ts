@@ -31,6 +31,8 @@ axios.interceptors.response.use(
   const activity: Activity = actRes.data;
   const entries = activity.entries
 
+  console.log(activity, entries, actRes, headers, headers.Authorization?.length)
+
   const queryApps = querystring.stringify({
     application_ids: getApplicationIds(entries),
   });
