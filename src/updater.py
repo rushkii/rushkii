@@ -15,9 +15,8 @@ def calculate_age(born: date):
     today = date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
-def generate_card() -> Tuple[str, str]:
-    COMMAND_ARGS = ["npm", "run", "build:run"]
-    p = subprocess.Popen(args=COMMAND_ARGS, stdout=subprocess.PIPE, shell=True)
+def generate_card():
+    p = subprocess.Popen(args="npm run build:run", stdout=subprocess.PIPE, shell=True)
     print(p.communicate()[0].decode())
     p.stdout.close()
 
